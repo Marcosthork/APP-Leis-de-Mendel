@@ -1,2 +1,2 @@
 # APP-Leis-de-Mendel
-É um aplicativo que auxilia no aprendizado da Biologia(Genética)
+É um aplicativo em Java que auxilia no aprendizado da Biologia(Genética)
