@@ -42,7 +42,7 @@ public class Calculo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Impact", 1, 24)); // NOI18N
-        jLabel1.setText("Decubra os Genótipos!");
+        jLabel1.setText("Descubra os Genótipos!");
 
         jRadioButton2.setFont(new java.awt.Font("Courier New", 0, 14)); // NOI18N
         jRadioButton2.setText("1° Lei de Mendel");

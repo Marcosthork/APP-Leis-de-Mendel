@@ -104,7 +104,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Impact" size="24" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Decubra os Gen&#xf3;tipos!"/>
+        <Property name="text" type="java.lang.String" value="Descubra os Gen&#xf3;tipos!"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRadioButton2">
