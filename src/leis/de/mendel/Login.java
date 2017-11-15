@@ -7,7 +7,7 @@ package leis.de.mendel;
 
 /**
  *
- * @author david
+ * @author david; marcos; matheus
  */
 public class Login extends javax.swing.JFrame {
 

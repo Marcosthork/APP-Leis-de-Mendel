@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 
 /**
  *
- * @author david; Marcos; Matheus
+ * @author david; marcos; matheus
  */
 class Conexao {
     private Connection myConnection;

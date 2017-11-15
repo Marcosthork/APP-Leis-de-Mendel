@@ -7,7 +7,7 @@ package leis.de.mendel;
 
 /**
  *
- * @author david
+ * @author david; marcos; matheus
  */
 public class Calculo extends javax.swing.JFrame {
 
