@@ -21,7 +21,7 @@ class Conexao {
             try{
                 Class.forName("com.mysql.jdbc.Driver");
                 myConnection = DriverManager.getConnection(
-                "jdbc:mysql://localhost/mendel","root", "");
+                "jdbc:mysql://localhost/mendel","root","");
             }
             catch(Exception e){
                 System.out.println("Falhou ao Fazer a conexão!");

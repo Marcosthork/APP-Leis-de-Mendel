@@ -5,6 +5,9 @@
  */
 package leis.de.mendel;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  *
  * @author david; marcos; matheus
@@ -14,7 +17,13 @@ public class Cadastrar extends javax.swing.JFrame {
     /**
      * Creates new form Cadastrar
      */
-    public Cadastrar() {
+    private Conexao mdbc;
+    private java.sql.Statement stmt;
+    public Cadastrar() throws SQLException {
+        mdbc = new Conexao();
+        mdbc.init();
+        Connection conn = mdbc.getMyConnection();
+        stmt= conn.createStatement();
         initComponents();
     }
 
@@ -29,14 +38,14 @@ public class Cadastrar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTSenha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTEmail = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        jTSobrenome = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jTNome = new javax.swing.JTextField();
+        jBCadastar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,28 +55,28 @@ public class Cadastrar extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Nome:");
 
-        jTextField1.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTSenha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Sobrenome:");
 
-        jTextField2.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTEmail.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel3.setText("E-mail:");
 
-        jTextField3.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTSobrenome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel4.setText("Senha:");
 
-        jTextField4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jTNome.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
-        jButton1.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
-        jButton1.setText("Cadastrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBCadastar.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
+        jBCadastar.setText("Cadastrar");
+        jBCadastar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBCadastarActionPerformed(evt);
             }
         });
 
@@ -86,13 +95,13 @@ public class Cadastrar extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
-                            .addComponent(jTextField3)
-                            .addComponent(jTextField2)
-                            .addComponent(jTextField1)))
+                            .addComponent(jTNome, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
+                            .addComponent(jTSobrenome)
+                            .addComponent(jTEmail)
+                            .addComponent(jTSenha)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(164, 164, 164)
-                        .addComponent(jButton1)))
+                        .addComponent(jBCadastar)))
                 .addGap(92, 92, 92))
         );
         jPanel1Layout.setVerticalGroup(
@@ -100,22 +109,22 @@ public class Cadastrar extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(49, 49, 49)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTSobrenome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(30, 30, 30)
-                .addComponent(jButton1)
+                .addComponent(jBCadastar)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
@@ -149,9 +158,28 @@ public class Cadastrar extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBCadastarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCadastarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String nome = jTNome.getText();
+        String sobrenome = jTSobrenome.getText();
+        String email = jTEmail.getText();
+        String senha = jTSenha.getText();
+        String  insertStr = "";
+        
+        try {
+            insertStr = "insert into usuario (iduser,nome,senha,email) values('"
+                    +nome+"','"
+                    +sobrenome+"','"
+                    +email+"','"
+                    +senha+"')";
+            System.out.println(insertStr);
+            int done =stmt.executeUpdate (insertStr);
+            getContentPane().removeAll();
+            initComponents();
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_jBCadastarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,22 +211,24 @@ public class Cadastrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Cadastrar().setVisible(true);
+                 try{
+                    new Cadastrar().setVisible(true);
+                }catch(Exception e){}   
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBCadastar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTEmail;
+    private javax.swing.JTextField jTNome;
+    private javax.swing.JTextField jTSenha;
+    private javax.swing.JTextField jTSobrenome;
     // End of variables declaration//GEN-END:variables
 }
