@@ -7,6 +7,8 @@ package leis.de.mendel;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -211,9 +213,10 @@ public class Cadastrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                 try{
+                 
+                try { 
                     new Cadastrar().setVisible(true);
-                }catch(Exception e){}   
+                } catch (SQLException ex) {}
             }
         });
     }

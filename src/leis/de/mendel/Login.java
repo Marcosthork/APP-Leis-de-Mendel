@@ -5,6 +5,9 @@
  */
 package leis.de.mendel;
 
+import java.sql.Connection;
+import java.sql.SQLException;
+
 /**
  *
  * @author david; marcos; matheus
@@ -14,7 +17,13 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    public Login() {
+    private Conexao mdbc;
+    private java.sql.Statement stmt;
+    public Login() throws SQLException {
+        mdbc = new Conexao();
+        mdbc.init();
+        Connection conn = mdbc.getMyConnection();
+        stmt= conn.createStatement();
         initComponents();
     }
 
@@ -153,7 +162,9 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                try{
+                    new Login().setVisible(true);
+                }catch(Exception e){}
             }
         });
     }
