@@ -41,6 +41,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         jBResultados.setText("<html>\nResultados <br>\nfeitos\n<html>");
+        jBResultados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBResultadosActionPerformed(evt);
+            }
+        });
 
         jBCalculo.setText("Cálculo");
         jBCalculo.addActionListener(new java.awt.event.ActionListener() {
@@ -80,11 +85,30 @@ public class Menu extends javax.swing.JFrame {
 
     private void jBTeoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBTeoriasActionPerformed
         // TODO add your handling code here:
+        try {
+            Leis leis = new Leis();
+            leis.setLocation(400, 100);
+            leis.setVisible(true);
+        } catch (Exception e) {}
     }//GEN-LAST:event_jBTeoriasActionPerformed
 
     private void jBCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCalculoActionPerformed
         // TODO add your handling code here:
+        try {
+            Calculo calculo = new Calculo();
+            calculo.setLocation(400, 100);
+            calculo.setVisible(true);
+        } catch (Exception e) {}
     }//GEN-LAST:event_jBCalculoActionPerformed
+
+    private void jBResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResultadosActionPerformed
+        // TODO add your handling code here:
+        try {
+            Resultados resultados = new Resultados();
+            resultados.setLocation(400, 100);
+            resultados.setVisible(true);
+        } catch (Exception e) {}
+    }//GEN-LAST:event_jBResultadosActionPerformed
 
     /**
      * @param args the command line arguments

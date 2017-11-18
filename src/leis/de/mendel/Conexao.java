@@ -7,52 +7,70 @@ package leis.de.mendel;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author david; marcos; matheus
  */
-class Conexao {
-    private Connection myConnection;
-        public Conexao() {
+public class Conexao {
+
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/mendel";
+    private static final String USER = "root";
+    private static final String PASS = "";
+
+    public static Connection getConnection() {
+        try {
+            Class.forName(DRIVER);
+            return DriverManager.getConnection(URL, USER, PASS);
+        } catch (ClassNotFoundException | SQLException ex) {
+            throw new RuntimeException("Erro na conexão: ", ex);
         }
-        public void init(){
-            try{
-                Class.forName("com.mysql.jdbc.Driver");
-                myConnection = DriverManager.getConnection(
-                "jdbc:mysql://localhost/mendel","root","");
+    }
+
+    public static void closeConnection(Connection con) {
+        try {
+            if (con != null) {
+                con.close();
             }
-            catch(Exception e){
-                System.out.println("Falhou ao Fazer a conexão!");
-                e.printStackTrace();
-            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        public Connection getMyConnection(){
-            return myConnection;
-        }
-        public void close(ResultSet rs){
-            if(rs !=null){
-                try{
-                    rs.close();
-                }
-                catch(Exception e){}
+    }
+
+    public static void closeConnection(Connection con, PreparedStatement stmt) {
+
+        closeConnection(con);
+
+        try {
+
+            if (stmt != null) {
+                stmt.close();
             }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        public void close(java.sql.Statement stmt){
-            if(stmt != null){
-                try{
-                    stmt.close();
-                }
-                catch(Exception e){}
+    }
+
+    public static void closeConnection(Connection con, PreparedStatement stmt, ResultSet rs) {
+
+        closeConnection(con, stmt);
+
+        try {
+
+            if (rs != null) {
+                rs.close();
             }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
         }
-        public void destroy(){
-            if(myConnection != null){
-                try{
-                    myConnection.close();
-                }
-                catch(Exception e){}
-            }
-        }    
+    }
+
 }

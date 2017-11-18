@@ -22,10 +22,10 @@ public class Cadastrar extends javax.swing.JFrame {
     private Conexao mdbc;
     private java.sql.Statement stmt;
     public Cadastrar() throws SQLException {
-        mdbc = new Conexao();
-        mdbc.init();
-        Connection conn = mdbc.getMyConnection();
+        mdbc = new Conexao();   
+        Connection conn = mdbc.getConnection();
         stmt= conn.createStatement();
+        // onde cria o stmt
         initComponents();
     }
 
@@ -50,7 +50,7 @@ public class Cadastrar extends javax.swing.JFrame {
         jBCadastar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -166,12 +166,12 @@ public class Cadastrar extends javax.swing.JFrame {
         String sobrenome = jTSobrenome.getText();
         String email = jTEmail.getText();
         String senha = jTSenha.getText();
+        String nomecompleto = nome.concat(" "+sobrenome);
         String  insertStr = "";
         
         try {
-            insertStr = "insert into usuario (iduser,nome,senha,email) values('"
-                    +nome+"','"
-                    +sobrenome+"','"
+            insertStr = "INSERT into usuario (nome,email,senha) values('"
+                    +nomecompleto+"','"
                     +email+"','"
                     +senha+"')";
             System.out.println(insertStr);
