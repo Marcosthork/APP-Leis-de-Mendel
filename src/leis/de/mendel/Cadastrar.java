@@ -40,7 +40,6 @@ public class Cadastrar extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTSenha = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTEmail = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -48,6 +47,7 @@ public class Cadastrar extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jTNome = new javax.swing.JTextField();
         jBCadastar = new javax.swing.JButton();
+        jPSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -56,8 +56,6 @@ public class Cadastrar extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel1.setText("Nome:");
-
-        jTSenha.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
         jLabel2.setText("Sobrenome:");
@@ -100,7 +98,7 @@ public class Cadastrar extends javax.swing.JFrame {
                             .addComponent(jTNome, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE)
                             .addComponent(jTSobrenome)
                             .addComponent(jTEmail)
-                            .addComponent(jTSenha)))
+                            .addComponent(jPSenha)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(164, 164, 164)
                         .addComponent(jBCadastar)))
@@ -123,9 +121,9 @@ public class Cadastrar extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(30, 30, 30)
+                    .addComponent(jLabel4)
+                    .addComponent(jPSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addComponent(jBCadastar)
                 .addContainerGap(44, Short.MAX_VALUE))
         );
@@ -165,7 +163,7 @@ public class Cadastrar extends javax.swing.JFrame {
         String nome = jTNome.getText();
         String sobrenome = jTSobrenome.getText();
         String email = jTEmail.getText();
-        String senha = jTSenha.getText();
+        String senha = String.valueOf(jPSenha.getPassword());
         String nomecompleto = nome.concat(" "+sobrenome);
         String  insertStr = "";
         
@@ -228,10 +226,10 @@ public class Cadastrar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPasswordField jPSenha;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTEmail;
     private javax.swing.JTextField jTNome;
-    private javax.swing.JTextField jTSenha;
     private javax.swing.JTextField jTSobrenome;
     // End of variables declaration//GEN-END:variables
 }
