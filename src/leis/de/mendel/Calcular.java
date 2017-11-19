@@ -7,6 +7,10 @@ package leis.de.mendel;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,7 +53,7 @@ public class Calcular extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jBSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        jTObservacao = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -89,10 +93,15 @@ public class Calcular extends javax.swing.JFrame {
         jLabel4.setText("Observações");
 
         jBSalvar.setText("Salvar");
+        jBSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalvarActionPerformed(evt);
+            }
+        });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        jTObservacao.setColumns(20);
+        jTObservacao.setRows(5);
+        jScrollPane1.setViewportView(jTObservacao);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,6 +265,35 @@ public class Calcular extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBCalcularActionPerformed
 
+    private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
+        // TODO add your handling code here:
+        email = jTEmail2.getText();
+        String Resultado = resultado1 + resultado2;
+        String Descricao = jTObservacao.getText();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/DD");
+        LocalDate localdate = LocalDate.now();
+        data = dtf.format(localdate);
+        DateTimeFormatter tf = DateTimeFormatter.ofPattern("HH:MM:SS");
+        LocalTime localtime = LocalTime.now();
+        hora = tf.format(localtime);
+        String inserStr = "";
+        
+        try {
+            inserStr = "INSERT into resultado (email,descricao,data,hora,resultado)"
+                    + "values('"+ email +"','"
+                    + Descricao +"','"
+                    + data +"','"
+                    + hora +"','"
+                    +Resultado+"')";
+            System.out.println(inserStr);
+            int done = stmt.executeUpdate(inserStr);
+            getContentPane().removeAll();
+            initComponents();
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_jBSalvarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,6 +344,6 @@ public class Calcular extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTCampo1;
     private javax.swing.JTextField jTCampo2;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTObservacao;
     // End of variables declaration//GEN-END:variables
 }
