@@ -223,7 +223,36 @@ public class Calcular extends javax.swing.JFrame {
         }
         //Executara o cálculo se a segunda lei estiver marcada
         if(jRSegunda.isSelected()){
-            
+            String resultado = "";
+            String gametas1 ="";
+            String gametas2 ="";
+            for (int i = 0; i < vetor1.length; i++) {
+                String posicao1 = vetor1[i];
+                for (int j = 2; j < vetor1.length; j++) {
+                    String posicao2= vetor1[j];
+                    gametas1 += posicao1 + posicao2;
+                }
+            }
+            System.out.println(gametas1);
+
+            for (int j = 0; j < vetor2.length; j++) {
+                String posicao1 = vetor2[j];
+                for (int i = 2; i < vetor2.length; i++) {
+                    String posicao2 = vetor2[i];
+                    gametas2 += posicao1 + posicao2;
+                }
+            }
+            System.out.println(gametas2);
+
+            resultado += "  " + gametas1 + gametas2;
+            String[] resultadofinal = resultado.split("");
+            System.out.println(resultado);
+            String acabou = "";
+            for (int i = 0; i < resultadofinal.length; i++) {
+                String end = resultadofinal[i];
+                acabou += "    "+ end + end;    
+            }
+            System.out.println(acabou);
         }
     }//GEN-LAST:event_jBCalcularActionPerformed
 
