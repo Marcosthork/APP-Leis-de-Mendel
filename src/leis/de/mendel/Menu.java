@@ -95,7 +95,7 @@ public class Menu extends javax.swing.JFrame {
     private void jBCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCalculoActionPerformed
         // TODO add your handling code here:
         try {
-            Calculo calculo = new Calculo();
+            Calcular calculo = new Calcular();
             calculo.setLocation(400, 100);
             calculo.setVisible(true);
         } catch (Exception e) {}
