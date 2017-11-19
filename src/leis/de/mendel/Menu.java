@@ -5,19 +5,25 @@
  */
 package leis.de.mendel;
 
+import java.sql.SQLException;
+import leis.de.mendel.modelo.ModeloEmail;
+
 /**
  *
  * @author david; marcos; matheus
  */
 public class Menu extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form Menu
      */
     public Menu() {
         initComponents();
     }
+    public void exportarEmail(ModeloEmail model) {
 
+        jTEmailMenu.setText(model.getEmail());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +36,8 @@ public class Menu extends javax.swing.JFrame {
         jBTeorias = new javax.swing.JButton();
         jBResultados = new javax.swing.JButton();
         jBCalculo = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTEmailMenu = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,6 +62,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Email Conectado:");
+
+        jTEmailMenu.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -66,18 +78,28 @@ public class Menu extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jBCalculo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(74, 74, 74))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTEmailMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTEmailMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBTeorias, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBResultados, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jBCalculo, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         pack();
@@ -94,11 +116,17 @@ public class Menu extends javax.swing.JFrame {
 
     private void jBCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCalculoActionPerformed
         // TODO add your handling code here:
+        ModeloEmail model2 = new ModeloEmail();
+        model2.setEmail(jTEmailMenu.getText());
+        Calcular frm2 ;
         try {
-            Calculo calculo = new Calculo();
-            calculo.setLocation(400, 100);
-            calculo.setVisible(true);
-        } catch (Exception e) {}
+            frm2 = new Calcular();
+            frm2.exportarEmail(model2);
+            frm2.setVisible(true);
+        } catch (SQLException ex) {
+            
+        }
+        
     }//GEN-LAST:event_jBCalculoActionPerformed
 
     private void jBResultadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBResultadosActionPerformed
@@ -149,5 +177,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jBCalculo;
     private javax.swing.JButton jBResultados;
     private javax.swing.JButton jBTeorias;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTEmailMenu;
     // End of variables declaration//GEN-END:variables
 }
