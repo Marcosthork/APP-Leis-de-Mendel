@@ -18,7 +18,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-
+    String email;
     public Login() throws SQLException {
         initComponents();
     }
@@ -143,15 +143,19 @@ public class Login extends javax.swing.JFrame {
 
     private void jBLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLoginActionPerformed
         // TODO add your handling code here:
-        String email = jTEmail.getText();
+        email = jTEmail.getText();
         String senha = String.valueOf(jPSenha.getPassword());
-
+        
+        ModeloEmail model = new ModeloEmail();
+        model.setEmail(jTEmail.getText());
+        
+        
         CheckLogin check = new CheckLogin();
 
         if (check.checkLogin(email, senha)) {
             // check.checkLogin serve para verificar se os dados estão corretos no BD
             Menu frm = new Menu();
-            
+            frm.exportarEmail(model);
             frm.setVisible(true);
             this.dispose();
 

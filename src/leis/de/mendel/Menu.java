@@ -14,10 +14,14 @@ public class Menu extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
+    
     public Menu() {
         initComponents();
     }
-
+    
+    public void exportarEmail(ModeloEmail model) {
+        jTEmail3.setText(model.getEmail());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,6 +34,7 @@ public class Menu extends javax.swing.JFrame {
         jBTeorias = new javax.swing.JButton();
         jBResultados = new javax.swing.JButton();
         jBCalculo = new javax.swing.JButton();
+        jTEmail3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,23 +59,32 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jTEmail3.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(99, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBTeorias, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addComponent(jBResultados))
-                .addGap(39, 39, 39)
-                .addComponent(jBCalculo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jBTeorias, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(jBResultados))
+                        .addGap(39, 39, 39)
+                        .addComponent(jBCalculo, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(74, 74, 74))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTEmail3, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(21, 21, 21)
+                .addComponent(jTEmail3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jBTeorias, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,10 +108,14 @@ public class Menu extends javax.swing.JFrame {
 
     private void jBCalculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCalculoActionPerformed
         // TODO add your handling code here:
+        ModeloEmail model2 = new ModeloEmail();
+        model2.setEmail(jTEmail3.getText());
+        Calcular frm2;
         try {
-            Calcular calculo = new Calcular();
-            calculo.setLocation(400, 100);
-            calculo.setVisible(true);
+            frm2 = new Calcular();
+            frm2.setLocation(400, 100);
+            frm2.exportarEmail(model2);
+            frm2.setVisible(true);
         } catch (Exception e) {}
     }//GEN-LAST:event_jBCalculoActionPerformed
 
@@ -149,5 +167,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton jBCalculo;
     private javax.swing.JButton jBResultados;
     private javax.swing.JButton jBTeorias;
+    private javax.swing.JTextField jTEmail3;
     // End of variables declaration//GEN-END:variables
 }

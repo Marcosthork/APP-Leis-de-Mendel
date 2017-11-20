@@ -32,6 +32,13 @@ public class Calcular extends javax.swing.JFrame {
         initComponents();
     }
 
+    String email;
+    String data;
+    String hora;
+
+    public void exportarEmail(ModeloEmail model2) {
+        jTEmail2.setText(model2.getEmail());
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -54,6 +61,7 @@ public class Calcular extends javax.swing.JFrame {
         jBSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTObservacao = new javax.swing.JTextArea();
+        jTEmail2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -103,6 +111,8 @@ public class Calcular extends javax.swing.JFrame {
         jTObservacao.setRows(5);
         jScrollPane1.setViewportView(jTObservacao);
 
+        jTEmail2.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -126,17 +136,20 @@ public class Calcular extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(jRSegunda))))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90)
+                        .addComponent(jBSalvar))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(178, 178, 178)
                         .addComponent(jBCalcular)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(jLResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(90, 90, 90)
-                        .addComponent(jBSalvar)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jTEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -155,7 +168,9 @@ public class Calcular extends javax.swing.JFrame {
                         .addComponent(jTCampo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addComponent(jBCalcular)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBCalcular)
+                    .addComponent(jTEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -214,7 +229,7 @@ public class Calcular extends javax.swing.JFrame {
 "                    <tr>\n" +
 "                        <th>X</th>\n" +
 "                        <th>"+p3+"</th>\n" +
-"                        <th>I"+p4+"</th>\n" +
+"                        <th>"+p4+"</th>\n" +
 "                    </tr>\n" +
 "                </thead>\n" +
 "\n" +
@@ -268,7 +283,8 @@ public class Calcular extends javax.swing.JFrame {
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
         // TODO add your handling code here:
         email = jTEmail2.getText();
-        String Resultado = resultado1 + resultado2;
+//        String Resultado = resultado1 + resultado2;
+        String Resultado = jLResultado.getText();
         String Descricao = jTObservacao.getText();
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/DD");
         LocalDate localdate = LocalDate.now();
@@ -344,6 +360,7 @@ public class Calcular extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTCampo1;
     private javax.swing.JTextField jTCampo2;
+    private javax.swing.JTextField jTEmail2;
     private javax.swing.JTextArea jTObservacao;
     // End of variables declaration//GEN-END:variables
 }
