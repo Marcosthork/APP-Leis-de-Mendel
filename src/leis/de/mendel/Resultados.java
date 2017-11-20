@@ -30,16 +30,24 @@ public class Resultados extends javax.swing.JFrame {
         entityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("mendel?zeroDateTimeBehavior=convertToNullPU").createEntityManager();
         resultadoQuery = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT r FROM Resultado r");
         resultadoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : resultadoQuery.getResultList();
+        resultadoQuery1 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT r FROM Resultado r");
+        resultadoList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : resultadoQuery1.getResultList();
+        resultadoQuery2 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT r FROM Resultado r");
+        resultadoList2 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : resultadoQuery2.getResultList();
+        resultadoQuery3 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT r FROM Resultado r");
+        resultadoList3 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : resultadoQuery3.getResultList();
+        resultadoQuery4 = java.beans.Beans.isDesignTime() ? null : entityManager.createQuery("SELECT r FROM Resultado r");
+        resultadoList4 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : resultadoQuery4.getResultList();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
         jLabel1.setText("Resultados feitos:");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -50,7 +58,7 @@ public class Resultados extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -58,21 +66,19 @@ public class Resultados extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(41, 41, 41)
-                .addComponent(jLabel1)
-                .addContainerGap(286, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 291, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(45, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,9 +122,17 @@ public class Resultados extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.persistence.EntityManager entityManager;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private java.util.List<leis.de.mendel.Resultado> resultadoList;
+    private java.util.List<leis.de.mendel.Resultado> resultadoList1;
+    private java.util.List<leis.de.mendel.Resultado> resultadoList2;
+    private java.util.List<leis.de.mendel.Resultado> resultadoList3;
+    private java.util.List<leis.de.mendel.Resultado> resultadoList4;
     private javax.persistence.Query resultadoQuery;
+    private javax.persistence.Query resultadoQuery1;
+    private javax.persistence.Query resultadoQuery2;
+    private javax.persistence.Query resultadoQuery3;
+    private javax.persistence.Query resultadoQuery4;
     // End of variables declaration//GEN-END:variables
 }

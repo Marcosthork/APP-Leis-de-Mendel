@@ -10,7 +10,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Locale;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,18 +25,18 @@ public class Calcular extends javax.swing.JFrame {
     private java.sql.Statement stmt;
     public Calcular() throws SQLException {
         mdbc = new Conexao();
-        mdbc.getConnection();
         Connection conn = mdbc.getConnection();
-        stmt= conn.createStatement();
+        stmt = conn.createStatement();
         initComponents();
     }
-
+    String Descricao;
+    String Resultado;
     String email;
     String data;
     String hora;
 
     public void exportarEmail(ModeloEmail model2) {
-        jTEmail2.setText(model2.getEmail());
+        email = model2.getEmail();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,7 +60,6 @@ public class Calcular extends javax.swing.JFrame {
         jBSalvar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTObservacao = new javax.swing.JTextArea();
-        jTEmail2 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,7 +93,7 @@ public class Calcular extends javax.swing.JFrame {
         });
 
         jLResultado.setFont(new java.awt.Font("Times New Roman", 0, 18)); // NOI18N
-        jLResultado.setText("Reultado");
+        jLResultado.setText("Resultado");
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         jLabel4.setText("Observações");
@@ -111,8 +109,6 @@ public class Calcular extends javax.swing.JFrame {
         jTObservacao.setRows(5);
         jScrollPane1.setViewportView(jTObservacao);
 
-        jTEmail2.setEditable(false);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -120,44 +116,43 @@ public class Calcular extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel1))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jTCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel2)
-                                .addGap(35, 35, 35)
-                                .addComponent(jTCampo2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRPrimeira)
-                                .addGap(30, 30, 30)
-                                .addComponent(jRSegunda))))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addComponent(jLResultado, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(90, 90, 90)
                         .addComponent(jBSalvar))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jBCalcular)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(311, 311, 311)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(102, 102, 102)
+                                    .addComponent(jBCalcular))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTCampo1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(34, 34, 34)
+                                    .addComponent(jLabel2)
+                                    .addGap(35, 35, 35)
+                                    .addComponent(jTCampo2, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jRPrimeira)
+                                    .addGap(30, 30, 30)
+                                    .addComponent(jRSegunda)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(50, 50, 50)))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(35, 35, 35)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRPrimeira)
                     .addComponent(jRSegunda))
@@ -168,15 +163,13 @@ public class Calcular extends javax.swing.JFrame {
                         .addComponent(jTCampo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBCalcular)
-                    .addComponent(jTEmail2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addComponent(jBCalcular)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jBSalvar)
                         .addGap(12, 12, 12))
@@ -246,66 +239,67 @@ public class Calcular extends javax.swing.JFrame {
 "            </table></html>");
         }
         //Executara o cálculo se a segunda lei estiver marcada
-        if(jRSegunda.isSelected()){
-            String resultado = "";
-            String gametas1 ="";
-            String gametas2 ="";
-            for (int i = 0; i < vetor1.length; i++) {
-                String posicao1 = vetor1[i];
-                for (int j = 2; j < vetor1.length; j++) {
-                    String posicao2= vetor1[j];
-                    gametas1 += posicao1 + posicao2;
-                }
-            }
-            System.out.println(gametas1);
-
-            for (int j = 0; j < vetor2.length; j++) {
-                String posicao1 = vetor2[j];
-                for (int i = 2; i < vetor2.length; i++) {
-                    String posicao2 = vetor2[i];
-                    gametas2 += posicao1 + posicao2;
-                }
-            }
-            System.out.println(gametas2);
-
-            resultado += "  " + gametas1 + gametas2;
-            String[] resultadofinal = resultado.split("");
-            System.out.println(resultado);
-            String acabou = "";
-            for (int i = 0; i < resultadofinal.length; i++) {
-                String end = resultadofinal[i];
-                acabou += "    "+ end + end;    
-            }
-            System.out.println(acabou);
-        }
+//        if(jRSegunda.isSelected()){
+//            String resultado = "";
+//            String gametas1 ="";
+//            String gametas2 ="";
+//            for (int i = 0; i < vetor1.length; i++) {
+//                String posicao1 = vetor1[i];
+//                for (int j = 2; j < vetor1.length; j++) {
+//                    String posicao2= vetor1[j];
+//                    gametas1 += posicao1 + posicao2;
+//                }
+//            }
+//            System.out.println(gametas1);
+//
+//            for (int j = 0; j < vetor2.length; j++) {
+//                String posicao1 = vetor2[j];
+//                for (int i = 2; i < vetor2.length; i++) {
+//                    String posicao2 = vetor2[i];
+//                    gametas2 += posicao1 + posicao2;
+//                }
+//            }
+//            System.out.println(gametas2);
+//
+//            resultado += "  " + gametas1 + gametas2;
+//            String[] resultadofinal = resultado.split("");
+//            System.out.println(resultado);
+//            String acabou = "";
+//            for (int i = 0; i < resultadofinal.length; i++) {
+//                String end = resultadofinal[i];
+//                acabou += "    "+ end + end;    
+//            }
+//            System.out.println(acabou);
+//        }
     }//GEN-LAST:event_jBCalcularActionPerformed
 
     private void jBSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalvarActionPerformed
         // TODO add your handling code here:
-        email = jTEmail2.getText();
+        
 //        String Resultado = resultado1 + resultado2;
-        String Resultado = jLResultado.getText();
-        String Descricao = jTObservacao.getText();
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("YYYY/MM/DD");
-        LocalDate localdate = LocalDate.now();
-        data = dtf.format(localdate);
-        DateTimeFormatter tf = DateTimeFormatter.ofPattern("HH:MM:SS");
-        LocalTime localtime = LocalTime.now();
-        hora = tf.format(localtime);
-        String inserStr = "";
+        Resultado = jLResultado.getText();
+        Descricao = jTObservacao.getText();
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        LocalDate localDate = LocalDate.now();
+        data = dtf.format(localDate);
+        DateTimeFormatter tf = DateTimeFormatter.ofPattern("HH:mm:ss");
+        LocalTime localTime = LocalTime.now();
+        hora = tf.format(localTime);
+        String insertStr = "";
         
         try {
-            inserStr = "INSERT into resultado (email,descricao,data,hora,resultado)"
-                    + "values('"+ email +"','"
+            insertStr = "INSERT into resultado (email,descricao,data,hora,resultado) values('"
+                    + email +"','"
                     + Descricao +"','"
                     + data +"','"
                     + hora +"','"
                     +Resultado+"')";
-            System.out.println(inserStr);
-            int done = stmt.executeUpdate(inserStr);
+            System.out.println(insertStr);
+            int done = stmt.executeUpdate(insertStr);
             getContentPane().removeAll();
             initComponents();
         } catch (Exception e) {
+            System.out.println("Erro nessa caraia");
         }
         
     }//GEN-LAST:event_jBSalvarActionPerformed
@@ -360,7 +354,6 @@ public class Calcular extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTCampo1;
     private javax.swing.JTextField jTCampo2;
-    private javax.swing.JTextField jTEmail2;
     private javax.swing.JTextArea jTObservacao;
     // End of variables declaration//GEN-END:variables
 }

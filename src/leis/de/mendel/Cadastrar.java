@@ -165,7 +165,7 @@ public class Cadastrar extends javax.swing.JFrame {
         String email = jTEmail.getText();
         String senha = String.valueOf(jPSenha.getPassword());
         String nomecompleto = nome.concat(" "+sobrenome);
-        String  insertStr = "";
+        String insertStr = "";
         
         try {
             insertStr = "INSERT into usuario (nome,email,senha) values('"
@@ -173,7 +173,7 @@ public class Cadastrar extends javax.swing.JFrame {
                     +email+"','"
                     +senha+"')";
             System.out.println(insertStr);
-            int done =stmt.executeUpdate (insertStr);
+            int done =stmt.executeUpdate(insertStr);
             getContentPane().removeAll();
             initComponents();
         } catch (Exception e) {

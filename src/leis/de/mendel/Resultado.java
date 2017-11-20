@@ -31,8 +31,7 @@ import javax.persistence.Transient;
 @NamedQueries({
     @NamedQuery(name = "Resultado.findAll", query = "SELECT r FROM Resultado r")
     , @NamedQuery(name = "Resultado.findByIdresultado", query = "SELECT r FROM Resultado r WHERE r.idresultado = :idresultado")
-    , @NamedQuery(name = "Resultado.findByIduser", query = "SELECT r FROM Resultado r WHERE r.iduser = :iduser")
-    , @NamedQuery(name = "Resultado.findByNome", query = "SELECT r FROM Resultado r WHERE r.nome = :nome")
+    , @NamedQuery(name = "Resultado.findByEmail", query = "SELECT r FROM Resultado r WHERE r.email = :email")
     , @NamedQuery(name = "Resultado.findByDescricao", query = "SELECT r FROM Resultado r WHERE r.descricao = :descricao")
     , @NamedQuery(name = "Resultado.findByData", query = "SELECT r FROM Resultado r WHERE r.data = :data")
     , @NamedQuery(name = "Resultado.findByHora", query = "SELECT r FROM Resultado r WHERE r.hora = :hora")
@@ -49,11 +48,8 @@ public class Resultado implements Serializable {
     @Column(name = "idresultado")
     private Integer idresultado;
     @Basic(optional = false)
-    @Column(name = "iduser")
-    private int iduser;
-    @Basic(optional = false)
-    @Column(name = "nome")
-    private String nome;
+    @Column(name = "email")
+    private String email;
     @Basic(optional = false)
     @Column(name = "descricao")
     private String descricao;
@@ -76,10 +72,9 @@ public class Resultado implements Serializable {
         this.idresultado = idresultado;
     }
 
-    public Resultado(Integer idresultado, int iduser, String nome, String descricao, Date data, Date hora, String resultado) {
+    public Resultado(Integer idresultado, String email, String descricao, Date data, Date hora, String resultado) {
         this.idresultado = idresultado;
-        this.iduser = iduser;
-        this.nome = nome;
+        this.email = email;
         this.descricao = descricao;
         this.data = data;
         this.hora = hora;
@@ -96,24 +91,14 @@ public class Resultado implements Serializable {
         changeSupport.firePropertyChange("idresultado", oldIdresultado, idresultado);
     }
 
-    public int getIduser() {
-        return iduser;
+    public String getEmail() {
+        return email;
     }
 
-    public void setIduser(int iduser) {
-        int oldIduser = this.iduser;
-        this.iduser = iduser;
-        changeSupport.firePropertyChange("iduser", oldIduser, iduser);
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        String oldNome = this.nome;
-        this.nome = nome;
-        changeSupport.firePropertyChange("nome", oldNome, nome);
+    public void setEmail(String email) {
+        String oldEmail = this.email;
+        this.email = email;
+        changeSupport.firePropertyChange("email", oldEmail, email);
     }
 
     public String getDescricao() {
